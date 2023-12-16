@@ -26,6 +26,8 @@ jobs:
 
       - name: Build Release APK
         run: ./gradlew assembleRelease
+      - name: Also build debug APK
+        run: ./gradlew assembleDebug
 
       - name: rename apk
         if: startsWith(github.ref, 'refs/tags/')
@@ -37,4 +39,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: WeatherApp-*.apk
+          files: |
+            WeatherApp-*.apk
+            **/*.apk
