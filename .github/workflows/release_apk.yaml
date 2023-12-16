@@ -1,7 +1,7 @@
 name: Build & Release APK
 on:
   release:
-    types: [published, created]
+    types: [published]
   push:
     paths:
       - .github/workflows/release_apk.yaml
@@ -28,6 +28,9 @@ jobs:
         run: ./gradlew assembleRelease
       - name: Also build debug APK
         run: ./gradlew assembleDebug
+
+      - name: test
+        run: tree
 
       - name: rename apk
         if: startsWith(github.ref, 'refs/tags/')
