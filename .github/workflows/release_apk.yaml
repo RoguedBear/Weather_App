@@ -2,9 +2,9 @@ name: Build & Release APK
 on:
   release:
     types: [published]
-  push:
-    paths:
-      - .github/workflows/release_apk.yaml
+  # push:
+  #   paths:
+  #     - .github/workflows/release_apk.yaml
 
 jobs:
   build:
