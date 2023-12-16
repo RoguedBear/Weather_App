@@ -1,0 +1,25 @@
+name: Build & Release APK
+on:
+  release:
+    types: [published, created]
+  push:
+    paths:
+      - .github/workflows/release_apk.yaml
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Make Gradle executable
+        run: chmod +x ./gradlew
+
+      - name: Build Release APK
+        run: ./gradlew assembleRelease
+
+      - name: test
+        run: |
+          tree
